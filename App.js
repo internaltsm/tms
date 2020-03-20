@@ -24,11 +24,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Routes from './src/Routes';
-
+import Details from './src/screens/home/Details'
 const App: () => React$Node = () => {
   return (
     <>
-      <Routes />
+      <Details />
     </>
   );
 };
