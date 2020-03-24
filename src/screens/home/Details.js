@@ -1,18 +1,48 @@
 import React, { Component } from 'react';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { ScrollView, View, Text, ImageBackground, Dimensions, Button } from 'react-native';
+import { ScrollView, View, Text, ImageBackground, Dimensions, TextInput,SafeAreaView } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
-import Styles from '../../assets/Styles'
+import Styles from '../../assets/Styles';
+import { LinearButton,BackgroundStyle } from '../../components/Common';
 const devHeight = Dimensions.get('window').height;
-
+const height = devHeight/2;
 class Details extends Component {
   render() {
+   
+    
     return (
       <View style={{flex:1}}>
-          <View style={{paddingVertical:10,paddingHorizontal:20}}>
+      <BackgroundStyle   height={devHeight} />
+      <View style={{flex:1,borderWidth:1,margin:50,borderRadius:25,backgroundColor:'white',borderColor:'white'}}>
+          <View style={[Styles.headerDiv]}>
               <Text style={[Styles.fontGilroyBold,Styles.textHeader]}>Create Login Details</Text>
-            </View>
+          </View>
+
+          <View style={{paddingHorizontal:20,paddingTop:30}}>
+            <TextInput placeholder="Username" 
+                       style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
+            />
+          </View>
+          <View style={{paddingHorizontal:20,paddingTop:30}}>
+            <TextInput placeholder="Password" 
+                       style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
+            />
+          </View>
+          <View style={{paddingHorizontal:20,paddingTop:30}}>
+            <TextInput placeholder="Confirm Password" 
+                       style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
+            />
+          </View>
+          <View style={{ paddingTop: 50 }}>
+                    <LinearButton
+                        title="Submit"
+                        style={[Styles.buttonText,Styles.fontGilroyLight]}
+                    />
+          </View>
+          </View>
+       
       </View>
+    
     );
   }
 }
