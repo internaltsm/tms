@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
+
 import Home from './screens/home/Home';
 import Details from './screens/home/Details';
+import ForgotPassword from './screens/home/ForgotPassword'
+import ChangePassword from './screens/home/ChangePassword'
 class Routes extends Component {
   render() {
     return (
@@ -11,6 +14,12 @@ class Routes extends Component {
                 
                 <Scene key="details">
                   <Scene key="logindetails" initia component={Details} />
+                </Scene>
+                <Scene key="forgotpass">
+                  <Scene key="forgot" initia component={ForgotPassword} />
+                </Scene>
+                <Scene key="changepass">
+                  <Scene key="change" initia component={ChangePassword} />
                 </Scene>
             </Scene>
         </Router>

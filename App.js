@@ -24,11 +24,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Routes from './src/Routes';
-import Details from './src/screens/home/Details'
+import ForgotPassword from './src/screens/home/ChangePassword'
 const App: () => React$Node = () => {
   return (
     <>
-      <Details />
+      <ForgotPassword />
     </>
   );
 };
