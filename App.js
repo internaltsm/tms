@@ -24,11 +24,14 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Routes from './src/Routes';
-import Details from './src/screens/home/Details'
+import Details from './src/screens/home/Details';
+import Home from './src/screens/home/Home';
+import LoginVerify from './src/screens/home/LoginVerify';
+import AccountDetails from './src/screens/home/AccountDetails';
 const App: () => React$Node = () => {
   return (
     <>
-      <Details />
+      <LoginVerify />
     </>
   );
 };
