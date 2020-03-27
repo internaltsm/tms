@@ -6,7 +6,7 @@ import Styles from '../../assets/Styles';
 import { LinearButton,BackgroundStyle } from '../../components/Common';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
-class Details extends Component {
+class ForgotPassword extends Component {
   render() {
    
     
@@ -15,21 +15,11 @@ class Details extends Component {
       <BackgroundStyle   height={devHeight} />
       <View style={{flex:1,borderWidth:1,margin:50,borderRadius:25,backgroundColor:'white',borderColor:'white'}}>
           <View style={[Styles.headerDiv]}>
-              <Text style={[Styles.fontGilroyBold,Styles.textHeader]}>Create Login Details</Text>
+              <Text style={[Styles.fontGilroyBold,Styles.textHeader]}>Forgot Password</Text>
           </View>
 
-          <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Username" 
-                       style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
-            />
-          </View>
-          <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Password" 
-                       style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
-            />
-          </View>
-          <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Confirm Password" 
+          <View style={{flex:1, justifyContent:'center',padding:20}}>
+            <TextInput placeholder="Enter email address" 
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
             />
           </View>
@@ -47,4 +37,4 @@ class Details extends Component {
   }
 }
 
-export default Details;
+export default ForgotPassword;

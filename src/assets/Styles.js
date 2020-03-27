@@ -8,7 +8,9 @@ export default StyleSheet.create({
     },
     textHeader: {
         fontSize: 25,
-        marginVertical: 25,
+        textAlign: 'center',
+        
+        color:'#579FFF'
         
     },
     fontGilroyBold: {
@@ -18,14 +20,33 @@ export default StyleSheet.create({
         fontFamily: "Gilroy-Light"
     },
     smallText: {
-        
         fontSize: 14,
         lineHeight: 18
     },
-    pageTitle: {
-        paddingTop: 20,
-        paddingBottom: 5,
+    headerDiv: {
+        paddingTop: '20%',
+        paddingBottom:'20%'
+    
+    },
+    linearGradient: {
+        borderRadius: 15,
+        backgroundColor: "#1CB9B2",
+        borderColor: '#DADADA',
+        paddingVertical: 10,
+        marginVertical: 18,
+        marginBottom: 20
+    },
+    backgrounGradient: {
+       
+        backgroundColor: "#1CB9B2",
+        borderColor: '#DADADA',
         
-        fontSize: 20
+    },
+    buttonText: {
+        fontSize: 18,
+        textAlign: 'center',
+        margin: 0,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
     },
 })
