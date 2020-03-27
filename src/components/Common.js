@@ -49,6 +49,31 @@ export const BackgroundStyle =  (props) =>{
    
     
 }
+export const BackgroundStyleTop =  (props) =>{
+    let height  = 200;
+    let colors = ['#46AFFF', '#378EFF', '#2466FF'];
+    console.log(height);
+    
+    if(height){
+     return (
+         <View>
+              <SafeAreaView style={{ flex: 0.5}} >
+              <LinearGradient
+                
+                 start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+                 colors={colors}
+                 height={height}
+             >
+             </LinearGradient>
+              </SafeAreaView>
+              <SafeAreaView style={{ flex: 0.5, backgroundColor: "white" }} />
+         </View>
+         
+     )
+    }
+    
+     
+ }
 const commonStyle = StyleSheet.create({
     collapsibleHeader: {
         paddingTop: Platform.OS === 'ios' ? 40 : 0,

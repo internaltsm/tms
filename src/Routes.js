@@ -5,6 +5,10 @@ import Home from './screens/home/Home';
 import Details from './screens/home/Details';
 import ForgotPassword from './screens/home/ForgotPassword'
 import ChangePassword from './screens/home/ChangePassword'
+
+//task
+import Taskhistory from './screens/task/Taskhistory'
+
 class Routes extends Component {
   render() {
     return (
@@ -20,6 +24,9 @@ class Routes extends Component {
                 </Scene>
                 <Scene key="changepass">
                   <Scene key="change" initia component={ChangePassword} />
+                </Scene>
+                <Scene key="taskhistory">
+                  <Scene key="history" initia component={Taskhistory} />
                 </Scene>
             </Scene>
         </Router>
