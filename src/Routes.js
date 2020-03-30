@@ -16,6 +16,12 @@ import ChangePassword from './screens/home/ChangePassword'
 import Taskhistory from './screens/task/Taskhistory'
 
 
+//tabs
+import MyAccount from './screens/bottomtab/MyAccount'
+import History from './screens/bottomtab/History'
+import CreateTask from './screens/bottomtab/CreateTask'
+
+
 class Routes extends Component {
   render() {
     return (
@@ -36,6 +42,11 @@ class Routes extends Component {
                 </Scene>
                 <Scene key="taskhistory">
                   <Scene key="history" initia component={Taskhistory} />
+                </Scene>
+                <Scene key="tab">
+                   <Scene key="myaccount" initia component={MyAccount}  initial back/>
+                   <Scene key="createtask" initia component={CreateTask}   back/>
+                   <Scene key="history" initia component={History}   back/>
                 </Scene>
             </Scene>
         </Router>
