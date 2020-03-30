@@ -10,8 +10,8 @@ const height = devHeight/2;
 import BottomNavi from '../../components/BottomNavi'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-class Taskhistory extends Component { 
-    
+class Taskhistory extends Component {
+
   render() {
     return (
       <View style={{flex:1}}>
@@ -24,14 +24,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -41,12 +41,12 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -54,14 +54,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -71,12 +71,12 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -84,14 +84,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -101,12 +101,12 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -114,14 +114,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -131,12 +131,12 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -144,14 +144,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -159,14 +159,16 @@ class Taskhistory extends Component {
                                 <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>March 01,2020</Text>
                                 <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>Content are for display purpose only</Text>
                             </View>
+                        </View>
+
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -174,14 +176,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -191,12 +193,12 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity >
@@ -204,14 +206,14 @@ class Taskhistory extends Component {
                                     borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                         <View style={{padding:10 }}>
                             <Avatar
-                                 rounded 
+                                 rounded
                                  size="large"
                                  source={{
                                     uri:
                                       'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                                  }}   
+                                  }}
                             />
-                                
+
                         </View>
                         <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                             <View>
@@ -221,21 +223,21 @@ class Taskhistory extends Component {
                             </View>
 
                             <View >
-                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF', 
+                                <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
                                     fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
                             </View>
                         </View>
 
-                        
+
                     </View>
-                </TouchableOpacity>                
+                </TouchableOpacity>
           </ScrollView>
           <BottomNavi />
 
           </View>
 
       </View>
-    
+
     );
   }
 }
@@ -252,4 +254,8 @@ const styles = StyleSheet.create({
 
     }
 })
+<<<<<<< HEAD
 export default Taskhistory;
+=======
+export default Taskhistory;
+>>>>>>> 9739111b94b9c18aba512e8cf6128ca01752cde3
