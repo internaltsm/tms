@@ -8,8 +8,8 @@ const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
 class Details extends Component {
   render() {
-   
-    
+
+
     return (
       <View style={{flex:1}}>
       <BackgroundStyle   height={devHeight} />
@@ -19,17 +19,17 @@ class Details extends Component {
           </View>
 
           <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Username" 
+            <TextInput placeholder="Username"
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
             />
           </View>
           <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Password" 
+            <TextInput placeholder="Password"
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
             />
           </View>
           <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Confirm Password" 
+            <TextInput placeholder="Confirm Password"
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
             />
           </View>
@@ -40,9 +40,9 @@ class Details extends Component {
                     />
           </View>
           </View>
-       
+
       </View>
-    
+
     );
   }
 }
