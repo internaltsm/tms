@@ -30,10 +30,6 @@ import History from './screens/bottomtab/History'
 
 
 
-//tabs
-import MyAccount from './screens/bottomtab/MyAccount'
-import History from './screens/bottomtab/History'
-import CreateTask from './screens/bottomtab/CreateTask'
 
 
 class Routes extends Component {
