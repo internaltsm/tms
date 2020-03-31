@@ -11,7 +11,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         
         color:'#579FFF'
-        
+
     },
     fontGilroyBold: {
         fontFamily: "Gilroy-ExtraBold"
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     headerDiv: {
         paddingTop: '20%',
         paddingBottom:'20%'
-    
+
     },
     linearGradient: {
         borderRadius: 15,
@@ -37,10 +37,10 @@ export default StyleSheet.create({
         marginBottom: 20
     },
     backgrounGradient: {
-       
+
         backgroundColor: "#1CB9B2",
         borderColor: '#DADADA',
-        
+
     },
     buttonText: {
         fontSize: 18,

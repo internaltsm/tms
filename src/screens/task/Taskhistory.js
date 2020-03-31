@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import {Avatar } from 'react-native-elements'
-import { LinearButton,BackgroundStyleTop } from '../../components/Common';
+import { LinearButton,BackgroundStyleTop,TransparentHeader } from '../../components/Common';
 import Styles from '../../assets/Styles'
 import  FontAwesome  from 'react-native-vector-icons/FontAwesome'
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
-class Taskhistory extends Component {
-    ss = () => {
-        console.log('pressed');
+import BottomNavi from '../../components/BottomNavi'
 
-    }
+import Icon from 'react-native-vector-icons/FontAwesome';
+class Taskhistory extends Component {
+
   render() {
     return (
       <View style={{flex:1}}>
+          <TransparentHeader title="Task History"  />
         <BackgroundStyleTop   height={devHeight} />
          <View style={{flex:1,borderWidth:1,margin:30,borderRadius:25,backgroundColor:'#F4F6F9',borderColor:'white'}}>
             <ScrollView>
@@ -158,6 +159,8 @@ class Taskhistory extends Component {
                                 <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>March 01,2020</Text>
                                 <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>Content are for display purpose only</Text>
                             </View>
+                        </View>
+
 
                             <View >
                                 <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
@@ -166,7 +169,7 @@ class Taskhistory extends Component {
                         </View>
 
 
-                    </View>
+
                 </TouchableOpacity>
                 <TouchableOpacity >
                     <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
@@ -229,7 +232,10 @@ class Taskhistory extends Component {
                     </View>
                 </TouchableOpacity>
           </ScrollView>
+
           </View>
+          <BottomNavi />
+
       </View>
 
     );
