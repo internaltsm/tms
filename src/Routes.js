@@ -3,14 +3,12 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import Home from './screens/home/Home';
 import Details from './screens/home/Details';
-<<<<<<< HEAD
 import LoginVerify from './screens/home/LoginVerify';
 import AccountDetails from './screens/home/AccountDetails';
-
-=======
 import ForgotPassword from './screens/home/ForgotPassword'
 import ChangePassword from './screens/home/ChangePassword'
->>>>>>> c542ce0dc6af9d25a0249a59c3e8ac6947b17a93
+import Dashboard from './screens/home/Dashboard';
+import AccountsList from './screens/home/AccountsList';
 class Routes extends Component {
   render() {
     return (
@@ -19,6 +17,8 @@ class Routes extends Component {
                 <Scene key="home" initial={true} hideNavBar={true} component={Home} />
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
+                <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
+                <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
                 
                 <Scene key="details">
                   <Scene key="logindetails" initia component={Details} />
