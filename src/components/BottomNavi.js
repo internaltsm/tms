@@ -27,7 +27,7 @@ class BottomNavi extends Component {
             icon: 'history',
             label: 'History',
         },
-        
+
     ]
 
     state = {

@@ -169,7 +169,7 @@ class Taskhistory extends Component {
                         </View>
 
 
-                  
+
                 </TouchableOpacity>
                 <TouchableOpacity >
                     <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
