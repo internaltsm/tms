@@ -28,7 +28,7 @@ import Details from './src/screens/home/Details'
 const App: () => React$Node = () => {
   return (
     <>
-      <Details />
+      <Routes />
     </>
   );
 };
