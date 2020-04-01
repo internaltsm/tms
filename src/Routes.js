@@ -16,12 +16,12 @@ import AccountsList from './screens/home/AccountsList';
 
 //task
 import Taskhistory from './screens/task/Taskhistory'
+import CreateTask from './screens/task/CreateTask'
 
 
 //tabs
 import MyAccount from './screens/bottomtab/MyAccount'
 import History from './screens/bottomtab/History'
-import CreateTask from './screens/bottomtab/CreateTask'
 
 const App = (props) => {
 
@@ -30,27 +30,31 @@ const App = (props) => {
           <Modal key="modal" hideNavBar  >
             <Scene key="root"  hideNavBar>
                 <Scene key="home" initial={true} hideNavBar={true} component={Home} />
-               
+
                   <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                   <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
                   <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
                   <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
-           
+
                   <Scene key="logindetails"  component={Details} />
                   <Scene key="forgot"    component={ForgotPassword} />
-                
+
                   <Scene key="change"  component={ChangePassword} />
-              
+
                   <Scene key="taskhistory"  component={Taskhistory} />
-                
+
                    <Scene key="myaccount"  component={MyAccount}   back/>
                    <Scene key="createtask"  component={CreateTask}   back/>
                    <Scene key="history"  component={History}   back/>
-                
+
             </Scene>
             </Modal>
         </Router>
  	);
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default Routes;
+>>>>>>> 9e004955c0b97588d7fb49cf6749610dacf29222
