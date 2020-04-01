@@ -53,8 +53,4 @@ const App = (props) => {
  	);
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default Routes;
->>>>>>> 9e004955c0b97588d7fb49cf6749610dacf29222
