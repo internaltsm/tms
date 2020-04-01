@@ -27,7 +27,7 @@ class BottomNavi extends Component {
             icon: 'history',
             label: 'History',
         },
-        
+
     ]
 
     state = {
@@ -47,7 +47,6 @@ class BottomNavi extends Component {
                 barColor="transparent"
                 backgroundColor="transparent"
                 key={tab.key}
-                isActive={isActive}
                 label={tab.label}
                 labelStyle={[{ color: '#555' }, Styles.fontGilroyLight]}
                 renderIcon={this.renderIcon(tab.icon)}
@@ -57,18 +56,14 @@ class BottomNavi extends Component {
 
     navigate(parameters) {
         let screen = parameters.key;
-        console.log(screen);
-         Actions[screen]({ type: 'replace' });
+        Actions[screen]({ type: 'replace' });
     }
 
     render() {
-        console.log(this.state.activeTab);
-        
         return (
             <BottomNavigation
-            activeTab={this.state.activeTab}
                 style={{ paddingVertical: 1 }}
-                onTabPress={newTab => this.setState({ activeTab: newTab.key })}
+                onTabPress={newTab => this.navigate(newTab)}
                 renderTab={this.renderTab}
                 tabs={this.tabs}
             />

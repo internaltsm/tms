@@ -169,7 +169,7 @@ class Taskhistory extends Component {
                         </View>
 
 
-                    </View>
+
                 </TouchableOpacity>
                 <TouchableOpacity >
                     <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
@@ -232,9 +232,9 @@ class Taskhistory extends Component {
                     </View>
                 </TouchableOpacity>
           </ScrollView>
-          <BottomNavi />
 
           </View>
+          <BottomNavi />
 
       </View>
 
@@ -254,8 +254,4 @@ const styles = StyleSheet.create({
 
     }
 })
-<<<<<<< HEAD
 export default Taskhistory;
-=======
-export default Taskhistory;
->>>>>>> 9739111b94b9c18aba512e8cf6128ca01752cde3

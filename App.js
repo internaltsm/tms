@@ -24,6 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Routes from './src/Routes';
+<<<<<<< HEAD
 import Details from './src/screens/home/Details';
 import Home from './src/screens/home/Home';
 import LoginVerify from './src/screens/home/LoginVerify';
@@ -35,6 +36,13 @@ const App: () => React$Node = () => {
   return (
     <>
       <AccountsList />
+=======
+import Details from './src/screens/home/Details'
+const App: () => React$Node = () => {
+  return (
+    <>
+      <Routes />
+>>>>>>> f5fa5eb39b920f513f6298f293a75dc29f19d3c8
     </>
   );
 };
