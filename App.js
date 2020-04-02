@@ -34,7 +34,7 @@ import AccountsList from './src/screens/home/AccountsList';
 const App: () => React$Node = () => {
   return (
     <>
-      <LoginVerify />
+      <Home />
     </>
   );
 };
