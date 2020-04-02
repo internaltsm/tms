@@ -19,7 +19,6 @@ class AccountsList extends Component {
         const url = Config.api_url + 'accounts/getaccounts';
         axios.get(url).then(res => {
             if(res.data.status === 'ok'){
-                console.log(res)
                 this.setState({accounts : res.data.list , loader : false});
             }
         })
