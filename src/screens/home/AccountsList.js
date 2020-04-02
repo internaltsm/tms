@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image } from 'react-native';
-
+import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image , StyleSheet} from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 class AccountsList extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            loader : false,
+            accounts : [],
+        }
+    }
+    componentDidMount(){
+
+    }
+    fetchAccounts() {
+        
+    }
   render() {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
+            <Spinner
+                visible={this.state.loader}
+                textStyle={styles.spinnerTextStyle}
+                animation = 'slide'
+                cancelable = {false}
+                textContent = "Loading..."
+                size = 'large'
+                textStyle = {{color : '#F4F6F9' , fontSize: 14}}
+                />
         <View style={{ height: '100%' }}>
           <View style={{ height: 240, alignItems: 'center' }}>
             <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >
               <View style = {{alignItems: 'center', flex: 1 }}>
                 <Text style={{ fontSize: 23, color: '#fff', marginTop: 60 }}>Accounts</Text>
               </View>
-            </ImageBackground> 
+            </ImageBackground>
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: -80 }}>
             <View style={{ width: '90%', justifyContent: 'center', flex: 1, alignItems: 'center', borderTopLeftRadius: 25, borderTopRightRadius: 25, backgroundColor: '#fff', paddingLeft: '5%', paddingRight: '5%', paddingTop: 50, paddingBottom: 50, flexDirection:'row', flexWrap: 'wrap', alignContent: 'stretch' }}>
@@ -52,5 +74,10 @@ class AccountsList extends Component {
     );
   }
 }
-
+const styles = StyleSheet.create({
+    spinnerTextStyle: {
+        color: '#FFF',
+        fontSize: 12,
+    },
+})
 export default AccountsList;
