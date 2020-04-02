@@ -29,7 +29,8 @@ const App = (props) => {
         <Router >
           <Modal key="modal" hideNavBar  >
             <Scene key="root"  hideNavBar>
-                <Scene key="home" initial={true} hideNavBar={true} component={Home} />
+                {/*<Scene key="home" initial={true} hideNavBar={true} component={Home} />*/}
+                <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} />
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
                 <Scene key="dashboard" hideNavBar={true} component={Dashboard} />

@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
-
+import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity , StyleSheet } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 class AccountDetails extends Component {
-
+    constructor(props){
+      super(props);
+      this.state = {loader : true}
+    }
+    componentDidMount(){
+        this.fetchMyAccount();
+    }
+    fetchMyAccount(){
+        alert(this.props.account_id);
+    }
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
+          <Spinner
+             visible={this.state.loader}
+              textStyle={styles.spinnerTextStyle}
+              animation = 'slide'
+              cancelable = {false}
+              textContent = "Loading..."
+              size = 'large'
+              textStyle = {{color : '#F4F6F9' , fontSize: 14}}
+              />
         <View style={{ height: '100%' }}>
           <View style={{ height: 240, alignItems: 'center' }}>
             <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >
               <View style = {{alignItems: 'center', flex: 1 }}>
                 <Text style={{ fontSize: 23, color: '#fff', marginTop: 60 }}>Account Details</Text>
               </View>
-            </ImageBackground> 
+            </ImageBackground>
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: -80 }}>
             <View style={{ width: '90%', borderTopLeftRadius: 25, borderTopRightRadius: 25, backgroundColor: '#fff', padding: '8%' }}>
@@ -73,5 +91,10 @@ class AccountDetails extends Component {
     );
   }
 }
-
+const styles = StyleSheet.create({
+    spinnerTextStyle: {
+        color: '#FFF',
+        fontSize: 12,
+    },
+})
 export default AccountDetails;
