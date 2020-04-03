@@ -29,24 +29,30 @@ const App = (props) => {
         <Router >
           <Modal key="modal" hideNavBar  >
             <Scene key="root"  hideNavBar>
-                <Scene key="home" initial={true} hideNavBar={true} component={Home} />
+                {/*<Scene key="home" initial={true} hideNavBar={true} component={Home} />*/}
+                <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} />
+                <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
+                <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
+                <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
+                <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
 
-                  <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
-                  <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
-                  <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
-                  <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
-
-                  <Scene key="logindetails"  component={Details} />
-                  <Scene key="forgot"    component={ForgotPassword} />
-
-                  <Scene key="change"  component={ChangePassword} />
-
-                  <Scene key="taskhistory"  component={Taskhistory} />
-
-                   <Scene key="myaccount"  component={MyAccount}   back/>
-                   <Scene key="createtask"  component={CreateTask}   back/>
-                   <Scene key="history"  component={History}   back/>
-
+                <Scene key="details">
+                  <Scene key="logindetails" initia component={Details} />
+                </Scene>
+                <Scene key="forgotpass">
+                  <Scene key="forgot" initia component={ForgotPassword} />
+                </Scene>
+                <Scene key="changepass">
+                  <Scene key="change" initia component={ChangePassword} />
+                </Scene>
+                <Scene key="taskhistory">
+                  <Scene key="history" initia component={Taskhistory} />
+                </Scene>
+                <Scene key="tab">
+                   <Scene key="myaccount" initia component={MyAccount}  initial back/>
+                   <Scene key="createtask" initia component={CreateTask}   back/>
+                   <Scene key="history" initia component={History}   back/>
+                </Scene>
             </Scene>
             </Modal>
         </Router>
