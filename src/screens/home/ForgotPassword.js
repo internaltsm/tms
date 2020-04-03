@@ -6,27 +6,49 @@ import Styles from '../../assets/Styles';
 import { LinearButton,BackgroundStyle } from '../../components/Common';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
+
+import axios from "axios";
+import qs from 'qs';
+import Helpers from '../../Helpers'
 class ForgotPassword extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        email:'', 
+    }
+}
+changePass = () => {
+  const data = this.state;
+  console.log(data);
+  
+  axios.post('http://localhost/tms/api').then(response => {
+    console.log(response);
+});
+}
+
   render() {
-   
+    console.log();
     
     return (
       <View style={{flex:1}}>
       <BackgroundStyle   height={devHeight} />
       <View style={{flex:1,borderWidth:1,margin:50,borderRadius:25,backgroundColor:'white',borderColor:'white'}}>
           <View style={[Styles.headerDiv]}>
-              <Text style={[Styles.fontGilroyBold,Styles.textHeader]}>Forgot Password</Text>
+              <Text style={[Styles.fontGilroyBold,Styles.textHeader]}>Change Password</Text>
           </View>
 
           <View style={{flex:1, justifyContent:'center',padding:20}}>
             <TextInput placeholder="Enter email address" 
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
+                       value={this.state.email}
+                       onChangeText={(email) => this.setState({email})}
             />
           </View>
           <View style={{ flex:1,justifyContent:'flex-end' }}>
                     <LinearButton
                         title="Submit"
                         style={[Styles.buttonText,Styles.fontGilroyLight]}
+                        onPress={this.changePass}
                     />
           </View>
           </View>
