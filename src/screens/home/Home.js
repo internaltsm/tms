@@ -33,7 +33,7 @@ class Home extends Component {
               </TouchableOpacity>
             </View>
             <View style={{ marginBottom: 10 }}>
-            <TouchableOpacity onPress={()=> Actions.forgot()}>
+            <TouchableOpacity onPress={()=> Actions.forgotpass()}>
               <Text style={{ textAlign: 'center', color: '#848181', fontSize: 15, lineHeight: 45 }}>Forgot password?</Text>
               </TouchableOpacity>
             </View>

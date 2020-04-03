@@ -6,10 +6,10 @@ import Styles from '../../assets/Styles';
 import { LinearButton,BackgroundStyle } from '../../components/Common';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
-
 import axios from "axios";
 import qs from 'qs';
 import Helpers from '../../Helpers'
+import { Actions } from 'react-native-router-flux';
 class ForgotPassword extends Component {
   constructor(props){
     super(props);
@@ -21,13 +21,18 @@ changePass = () => {
   const data = this.state;
   console.log(data);
   
-  axios.post('http://localhost/tms/api').then(response => {
-    console.log(response);
+  axios.post(Helpers.api_url +'/changePassword',qs.stringify(data)).then(response => {
+    if(response.data.type == 'success'){
+      console.log(Actions);
+       Actions.changepassword();
+     
+      
+    }
 });
 }
 
   render() {
-    console.log();
+    //console.log(this.state);
     
     return (
       <View style={{flex:1}}>
