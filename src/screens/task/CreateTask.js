@@ -7,6 +7,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import Styles from '../../assets/Styles'
 import  FontAwesome  from 'react-native-vector-icons/FontAwesome'
 import Spinner from 'react-native-loading-spinner-overlay';
+import DocumentPicker from 'react-native-document-picker';
+import RNFS  from 'react-native-fs';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
 class CreateTask extends Component {
@@ -30,6 +32,16 @@ class CreateTask extends Component {
                 this.setState({titleText : 'Video Files'});
                 break;
         }
+    }
+    attachedFile = () => {
+            
+            const res =  DocumentPicker.pick({type: [DocumentPicker.types.images]});
+           
+            console.log(res);
+          
+                            
+        
+  
     }
     render() {
         const component1 = () => <Text >Text</Text>
@@ -85,7 +97,7 @@ class CreateTask extends Component {
                                                 />
                                         </View>
                                         <View style = {styles.conts}>
-                                            <TouchableOpacity onPress = {() => alert('Attachments Here')} style= {styles.attachment}>
+                                            <TouchableOpacity onPress = {() => this.attachedFile()} style= {styles.attachment}>
                                                 <Text style= {styles.fadeColor}>Attachments</Text>
                                             </TouchableOpacity>
                                         </View>
@@ -101,7 +113,7 @@ class CreateTask extends Component {
                                     :
 
                                     <View style = {styles.conts}>
-                                        <TouchableOpacity onPress = {() => alert('Attachments Here')} style= {styles.attachment}>
+                                        <TouchableOpacity onPress = {() => this.attachedFile()}  style= {styles.attachment}>
                                             <Text style= {styles.fadeColor}>Upload {this.state.titleText}</Text>
                                         </TouchableOpacity>
                                     </View>

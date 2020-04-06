@@ -19,9 +19,9 @@ class ChangePassword extends Component {
 }
 newPassword = () => {
   const data = this.state;
-  console.log(data);
-  
+  console.log(data);  
   axios.post(Helpers.api_url +'newPassword/2',qs.stringify(data)).then(response => {
+   
   if(response.data.type == "success"){
     Actions.taskhistory();
   }
