@@ -6,7 +6,15 @@
  * @flow
  */
 
-import React,{Component} from 'react';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
 
 import Routes from './src/Routers';
 import Details from './src/screens/task/CreateTask'
@@ -14,7 +22,7 @@ import Details from './src/screens/task/CreateTask'
 class App extends Component {
   render() {
     return (
-  
+
         <Details />
    
     );

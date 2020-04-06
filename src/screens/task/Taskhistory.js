@@ -11,6 +11,7 @@ import BottomNavi from '../../components/BottomNavi'
 import axios from "axios";
 import qs from 'qs';
 import Helpers from '../../Helpers'
+import Config from '../../config'
 import Icon from 'react-native-vector-icons/FontAwesome';
 class Taskhistory extends Component {
     constructor(props){
@@ -26,13 +27,19 @@ class Taskhistory extends Component {
         axios.post(Helpers.api_url+'getAllTaskList/2/1').then(response=>{
             this.setState({tasks:response.data});
         })
-        
+    }
+
+    getTaskInfo = (task_id) => {
+        axios.get(Config.api_url+'tasks/get_task_info/'+task_id).then( res => {
+            console.log(res);
+        });
+
     }
     displayList = () => {
         const tasks = this.state.tasks;
         return tasks.map((task,index)=>{
            return (
-            <TouchableOpacity key={index}>
+            <TouchableOpacity key={index} onPress={() => this.getTaskInfo(task.pk_task_list_id)}>
             <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
                             borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                 <View style={{padding:10 }}>
@@ -63,13 +70,13 @@ class Taskhistory extends Component {
             </View>
         </TouchableOpacity>
            )
-            
+
         })
-        
+
     }
   render() {
       console.log(this.state.tasks);
-      
+
     return (
       <View style={{flex:1}}>
           <TransparentHeader title="Task History"  />
@@ -77,7 +84,7 @@ class Taskhistory extends Component {
          <View style={{flex:1,borderWidth:1,margin:30,borderRadius:25,backgroundColor:'#F4F6F9',borderColor:'white'}}>
             <ScrollView>
                 {this.displayList()}
-           
+
           </ScrollView>
 
           </View>

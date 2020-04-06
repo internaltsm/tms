@@ -42,10 +42,10 @@ const getSceneStyle = function (/* NavigationSceneRendererProps */ props, comput
   return style;
 };
 const App = (props) => {
- 
+
     return (
         <Router >
-          
+
             <Scene key="root"  hideNavBar >
                 <Scene key="home" initial={true} hideNavBar={true} component={Home} />
                 {/* <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} /> */}
@@ -54,15 +54,15 @@ const App = (props) => {
                 <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
 
-                
+
                   <Scene key="logindetails"  component={Details} />
-               
-              
+
+
                   <Scene key="forgotpass"  component={ForgotPassword} />
-             
-              
+
+
                   <Scene key="changepassword" hideNavBar={true} component={ChangePassword}  />
-               
+
                 <Scene key="taskhistory">
                   <Scene key="history"  component={Taskhistory} initial/>
                 </Scene>
@@ -72,7 +72,7 @@ const App = (props) => {
                    <Scene key="history"  component={History}   back/>
                 </Scene>
             </Scene>
-          
+
         </Router>
  	);
 }
