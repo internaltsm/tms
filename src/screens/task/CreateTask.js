@@ -43,15 +43,10 @@ class CreateTask extends Component {
                 break;
         }
     }
-    attachedFile = () => {
 
-            const res =  DocumentPicker.pick({type: [DocumentPicker.types.images]});
-
-            console.log(res);
-
-
-
-
+    attachedFile = async() => {
+        const res =  await DocumentPicker.pick({type: [DocumentPicker.types.images]});
+        console.log(res);
     }
     createtask = () => {
         this.setState({loader : true});
@@ -125,6 +120,7 @@ class CreateTask extends Component {
                                                 value = {this.state.instruction}
                                                 />
                                         </View>
+
                                         <View style = {styles.conts}>
                                             <TouchableOpacity onPress = {() => this.attachedFile()} style= {styles.attachment}>
                                                 <Text style= {styles.fadeColor}>Attachments</Text>

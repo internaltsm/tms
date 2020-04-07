@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity , StyleSheet } from 'react-native';
 import Config from '../../config';
+import Helpers from '../../Helpers';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
 class AccountDetails extends Component {
@@ -16,10 +17,9 @@ class AccountDetails extends Component {
     }
     fetchMyAccount(){
         const {account_id} = this.props;
-        const url = Config.api_url + 'accounts/getaccount/'+account_id;
+        const url = Helpers + 'accountsDetails/'+account_id;
         axios.get(url).then(res => {
             const {info} = res.data;
-
             this.setState({account : info , loader : false});
         })
     }

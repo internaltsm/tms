@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React , {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -23,8 +23,8 @@ class App extends Component {
   render() {
     return (
 
-        <Details />
-   
+        <Routes />
+
     );
   }
 }export default App;
