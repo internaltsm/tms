@@ -8,10 +8,11 @@ import Styles from '../../assets/Styles'
 import  FontAwesome  from 'react-native-vector-icons/FontAwesome'
 import Spinner from 'react-native-loading-spinner-overlay';
 import DocumentPicker from 'react-native-document-picker';
-import RNFS  from 'react-native-fs';
+
 import Config from '../../config';
 import qs from 'qs';
 import axios from 'axios';
+import Helpers from '../../Helpers';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
 const init = {
@@ -43,14 +44,27 @@ class CreateTask extends Component {
                 break;
         }
     }
-    attachedFile = () => {
+    attachedFile = async() => {
 
-            const res =  DocumentPicker.pick({type: [DocumentPicker.types.images]});
+            // const res = await DocumentPicker.pick({type: [DocumentPicker.types.images],});
 
-            console.log(res);
+            // console.log('res : ' + JSON.stringify(res));
+            // console.log('URI : ' + res.uri);
+            // console.log('Type : ' + res.type);
+            // console.log('File Name : ' + res.name);
+            // console.log('File Size : ' + res.size);
 
+            // axios.post(Helpers.api_url + 'attachedFile/' + 2,qs.stringify(res)).then(response=>{
+            //     console.log(response);
+                
+            // })
+            const split = url.split('/');
+            const name = split.pop();
+            const inbox = split.pop();
+            const realPath = `${RNFS.TemporaryDirectoryPath}${inbox}/${name}`;
 
-
+          console.log(realPath);
+          
 
     }
     createtask = () => {
