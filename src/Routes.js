@@ -13,6 +13,7 @@ import ForgotPassword from './screens/home/ForgotPassword'
 import ChangePassword from './screens/home/ChangePassword'
 import Dashboard from './screens/home/Dashboard';
 import AccountsList from './screens/home/AccountsList';
+import TaskDetails from './screens/home/TaskDetails';
 
 //task
 import Taskhistory from './screens/task/Taskhistory'
@@ -29,12 +30,13 @@ const App = (props) => {
         <Router >
           <Modal key="modal" hideNavBar  >
             <Scene key="root"  hideNavBar>
-                {/*<Scene key="home" initial={true} hideNavBar={true} component={Home} />*/}
-                <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} />
+        
+                <Scene key="home" initial={true} hideNavBar={true} component={Home} />
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
                 <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
+                <Scene key="taskdetails" hideNavBar={true} component={TaskDetails} />
 
                 <Scene key="details">
                   <Scene key="logindetails" initia component={Details} />

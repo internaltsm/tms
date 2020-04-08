@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { ScrollView, View, Text, ImageBackground, Dimensions,  TouchableOpacity, Image, TextInput } from 'react-native';
+import Config from '../../config';
+import axios from 'axios';
+import qs from 'qs'
 import { Actions } from 'react-native-router-flux';
 const devwidth = Dimensions.get('window').height;
 
 class Home extends Component {
-  ss = () => {
-    console.log('hjsdbfb');
+  constructor(props) {
+    super(props);
+    this.state = {
+      loader : true,
+      username: '',
+      password: ''
+    }
   }
+
+  checklogin = () => {
+    console.log(Actions);
+    const {username , password} = this.state;
+    const url = Config.api_url + 'login/tmsLogin';
+    const data = { username:username, password:password }
+
+    axios({
+      url: url,
+      method: 'POST',
+      data: qs.stringify(data),
+      config: { headers: { 'Content-Type': 'multipart/form-data' } }
+    }).then(result => {
+      if (result.data.status == 'canlogin') {
+        Actions.dashboard();
+      } else {
+        alert('Login Failed');
+      }
+    })
+
+  }
+
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -22,13 +52,13 @@ class Home extends Component {
           <View style={{ backgroundColor: '#fff', height: '75%', borderTopLeftRadius: 25, borderTopRightRadius: 25, marginTop: '-5%' }}>
             <Text style={{ fontSize: 35, textAlign: 'center', color: '#579fff', marginTop: 70, marginBottom: 40 }}>Sign In</Text>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 15 }}>
-              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none"></TextInput>
+              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
             </View>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 35 }}>
-              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Password" placeholderTextColor = "#000" autoCapitalize = "none"></TextInput>
+              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Password" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
             </View>
             <View style={{ alignItems: 'center', marginBottom: 20 }}>
-              <TouchableOpacity onPress={()=>Actions.taskhistory()} style={{ width: 150, height: 45, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5}}>
+              <TouchableOpacity onPress={() => this.checklogin()} style={{ width: 150, height: 45, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5}}>
                 <Text style={{ color: '#fff', lineHeight: 45, textAlign: 'center' }}>Sign In</Text>
               </TouchableOpacity>
             </View>

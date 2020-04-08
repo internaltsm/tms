@@ -31,6 +31,7 @@ import AccountDetails from './src/screens/home/AccountDetails';
 import ForgotPassword from './src/screens/home/ChangePassword';
 import Dashboard from './src/screens/home/Dashboard';
 import AccountsList from './src/screens/home/AccountsList';
+import TaskDetails from './src/screens/home/TaskDetails';
 const App: () => React$Node = () => {
   return (
     <>
