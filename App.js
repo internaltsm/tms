@@ -23,8 +23,8 @@ class App extends Component {
   render() {
     return (
 
-        <Details />
-   
+        <Routes />
+
     );
   }
 }export default App;

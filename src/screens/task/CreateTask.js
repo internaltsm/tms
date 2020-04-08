@@ -56,7 +56,7 @@ class CreateTask extends Component {
 
             // axios.post(Helpers.api_url + 'attachedFile/' + 2,qs.stringify(res)).then(response=>{
             //     console.log(response);
-                
+
             // })
             const split = url.split('/');
             const name = split.pop();
@@ -64,9 +64,9 @@ class CreateTask extends Component {
             const realPath = `${RNFS.TemporaryDirectoryPath}${inbox}/${name}`;
 
           console.log(realPath);
-          
 
-    }
+
+    
     createtask = () => {
         this.setState({loader : true});
         const {instruction} = this.state;
@@ -139,6 +139,7 @@ class CreateTask extends Component {
                                                 value = {this.state.instruction}
                                                 />
                                         </View>
+
                                         <View style = {styles.conts}>
                                             <TouchableOpacity onPress = {() => this.attachedFile()} style= {styles.attachment}>
                                                 <Text style= {styles.fadeColor}>Attachments</Text>

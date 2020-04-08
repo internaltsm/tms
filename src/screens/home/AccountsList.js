@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image , StyleSheet , Alert} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Config from '../../config';
+import Helpers from '../../Helpers';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 class AccountsList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            loader : true,
+            loader : false,
             accounts : [],
         }
     }
@@ -16,10 +17,11 @@ class AccountsList extends Component {
         this.fetchAccounts();
     }
     fetchAccounts() {
-        const url = Config.api_url + 'accounts/getaccounts';
+        const url = Helpers.orc_api + 'acc_id_company';
         axios.get(url).then(res => {
-            if(res.data.status === 'ok'){
-                this.setState({accounts : res.data.list , loader : false});
+
+            if(res.data){
+                this.setState({accounts : res.data , loader : false});
             }
         })
     }
@@ -48,9 +50,9 @@ class AccountsList extends Component {
                 {
                     this.state.accounts.map( (val , idx) => {
                         return(
-                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.account_id})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, borderRadius: 8, margin: 7, borderColor: '#3e9dff', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: -100 }, shadowOpacity: 0.1, shadowRadius: 10, elevation: 40, backgroundColor: '#fff' }}>
+                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.acc_id})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, borderRadius: 8, margin: 7, borderColor: '#3e9dff', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: -100 }, shadowOpacity: 0.1, shadowRadius: 10, elevation: 40, backgroundColor: '#fff' }}>
                               <Image source = {require('../../assets/images/accountsList_icon.png')} style = {{ width: 90, height: 37, resizeMode: 'contain', marginTop: 0}} />
-                              <Text style={{ fontSize: 15, color: '#727272', marginTop: 30 }}>{val.account_name}</Text>
+                              <Text style={{ fontSize: 15, color: '#727272', marginTop: 30 }}>{val.company}</Text>
                             </TouchableOpacity>
                         )
                     })
