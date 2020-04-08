@@ -14,6 +14,9 @@ export const LinearButton = (props) => {
     return (
 
      
+        <TouchableOpacity
+        onPress={props.onPress}
+    >
             <LinearGradient
                 style={[Styles.linearGradient, { width:'50%',height: 47, alignItems: 'center',alignSelf:'center' }]}
                 start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
@@ -24,6 +27,7 @@ export const LinearButton = (props) => {
                 </Text>
              
             </LinearGradient>
+            </TouchableOpacity>
        
     );
 }

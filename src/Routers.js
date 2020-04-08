@@ -19,44 +19,62 @@ import TaskDetails from './screens/home/TaskDetails';
 import Taskhistory from './screens/task/Taskhistory'
 import CreateTask from './screens/task/CreateTask'
 
-
 //tabs
 import MyAccount from './screens/bottomtab/MyAccount'
 import History from './screens/bottomtab/History'
+const reducerCreate = params=> {
+  const defaultReducer = Reducer(params);
+  return (state, action)=> {
+      return defaultReducer(state, action);
+  }
+};
+const getSceneStyle = function (/* NavigationSceneRendererProps */ props, computedProps) {
+  const style = {
+      flex: 1,
+      shadowColor: null,
+      shadowOffset: null,
+      shadowOpacity: null,
+      shadowRadius: null
+  };
 
+  if (computedProps.isActive) {
+     style.marginTop = computedProps.hideNavBar ? 0 : 64;
+  }
+  return style;
+};
 const App = (props) => {
 
     return (
         <Router >
-          <Modal key="modal" hideNavBar  >
-            <Scene key="root"  hideNavBar>
-        
+
+            <Scene key="root"  hideNavBar >
                 <Scene key="home" initial={true} hideNavBar={true} component={Home} />
+                {/* <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} /> */}
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
                 <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
                 <Scene key="taskdetails" hideNavBar={true} component={TaskDetails} />
 
-                <Scene key="details">
-                  <Scene key="logindetails" initia component={Details} />
-                </Scene>
-                <Scene key="forgotpass">
-                  <Scene key="forgot" initia component={ForgotPassword} />
-                </Scene>
-                <Scene key="changepass">
-                  <Scene key="change" initia component={ChangePassword} />
-                </Scene>
+
+                  <Scene key="logindetails"  component={Details} />
+
+
+                  <Scene key="forgotpass"  component={ForgotPassword} />
+
+
+                  <Scene key="changepassword" hideNavBar={true} component={ChangePassword}  />
+
                 <Scene key="taskhistory">
-                  <Scene key="history" initia component={Taskhistory} />
+                  <Scene key="history"  component={Taskhistory} initial/>
                 </Scene>
                 <Scene key="tab">
-                   <Scene key="myaccount" initia component={MyAccount}  initial back/>
-                   <Scene key="createtask" initia component={CreateTask}   back/>
-                   <Scene key="history" initia component={History}   back/>
+                   <Scene key="myaccount"  component={MyAccount}   back/>
+                   <Scene key="createtask"  component={CreateTask}   back/>
+                   <Scene key="history"  component={History}   back/>
                 </Scene>
             </Scene>
-            </Modal>
+
         </Router>
  	);
 }

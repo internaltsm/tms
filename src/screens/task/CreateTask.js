@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity , TextInput } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Dimensions, TouchableOpacity , TextInput , Alert } from 'react-native';
 import {Avatar , Divider , ButtonGroup , Button } from 'react-native-elements'
 import { LinearButton,BackgroundStyleTop } from '../../components/Common';
 import LinearGradient from 'react-native-linear-gradient'
 import Styles from '../../assets/Styles'
 import  FontAwesome  from 'react-native-vector-icons/FontAwesome'
 import Spinner from 'react-native-loading-spinner-overlay';
+import DocumentPicker from 'react-native-document-picker';
+
+import Config from '../../config';
+import qs from 'qs';
+import axios from 'axios';
+import Helpers from '../../Helpers';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
+const init = {
+        selectedIndex : 0,
+        loader : false,
+        date : new Date(),
+        titleText : '',
+        instruction : ''
+    }
 class CreateTask extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedIndex : 0,
-            loader : false,
-            date : new Date(),
-            titleText : ''
-        }
+        this.state = init;
+    }
+    componentDidMount(){
+
+    }
+    reset() {
+        this.setState(init);
     }
     updateIndex = (selectedIndex) => {
-
         this.setState({selectedIndex});
         switch (selectedIndex){
             case 1 :
@@ -30,6 +43,46 @@ class CreateTask extends Component {
                 this.setState({titleText : 'Video Files'});
                 break;
         }
+    }
+    attachedFile = async() => {
+
+            // const res = await DocumentPicker.pick({type: [DocumentPicker.types.images],});
+
+            // console.log('res : ' + JSON.stringify(res));
+            // console.log('URI : ' + res.uri);
+            // console.log('Type : ' + res.type);
+            // console.log('File Name : ' + res.name);
+            // console.log('File Size : ' + res.size);
+
+            // axios.post(Helpers.api_url + 'attachedFile/' + 2,qs.stringify(res)).then(response=>{
+            //     console.log(response);
+
+            // })
+            const split = url.split('/');
+            const name = split.pop();
+            const inbox = split.pop();
+            const realPath = `${RNFS.TemporaryDirectoryPath}${inbox}/${name}`;
+
+          console.log(realPath);
+
+
+    
+    createtask = () => {
+        this.setState({loader : true});
+        const {instruction} = this.state;
+        const url = Config.api_url + 'tasks/create_task';
+        const formdata = new FormData();
+        formdata.append('instruction' , instruction);
+        axios.post(url ,formdata).then(res => {
+            if(res.data.status === 'ok'){
+                Alert.alert('Created');
+                this.setState({loader : false});
+                this.reset();
+            }else{
+                Alert.alert('Fail');
+                this.setState({loader : false});
+            }
+        })
     }
     render() {
         const component1 = () => <Text >Text</Text>
@@ -82,10 +135,13 @@ class CreateTask extends Component {
                                                 multiline={true}
                                                 numberOfLines={4}
                                                 placeholder = 'Enter Instruction here'
+                                                onChangeText = {(instruction) => this.setState({instruction})}
+                                                value = {this.state.instruction}
                                                 />
                                         </View>
+
                                         <View style = {styles.conts}>
-                                            <TouchableOpacity onPress = {() => alert('Attachments Here')} style= {styles.attachment}>
+                                            <TouchableOpacity onPress = {() => this.attachedFile()} style= {styles.attachment}>
                                                 <Text style= {styles.fadeColor}>Attachments</Text>
                                             </TouchableOpacity>
                                         </View>
@@ -101,7 +157,7 @@ class CreateTask extends Component {
                                     :
 
                                     <View style = {styles.conts}>
-                                        <TouchableOpacity onPress = {() => alert('Attachments Here')} style= {styles.attachment}>
+                                        <TouchableOpacity onPress = {() => this.attachedFile()}  style= {styles.attachment}>
                                             <Text style= {styles.fadeColor}>Upload {this.state.titleText}</Text>
                                         </TouchableOpacity>
                                     </View>
@@ -112,7 +168,7 @@ class CreateTask extends Component {
                                         type="solid"
                                         buttonStyle = {styles.btnSubmit}
                                         titleStyle={{ color: '#ffffff' , fontSize : 12}}
-                                        onPress = {() => alert('Submit')}
+                                        onPress = {() => this.createtask()}
                                         />
                                 </View>
                             </View>

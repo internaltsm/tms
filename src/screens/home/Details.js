@@ -7,9 +7,16 @@ import { LinearButton,BackgroundStyle } from '../../components/Common';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
 class Details extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        email:'',
+        password:''
+        
+    }
+}
+
   render() {
-
-
     return (
       <View style={{flex:1}}>
       <BackgroundStyle   height={devHeight} />
@@ -19,8 +26,10 @@ class Details extends Component {
           </View>
 
           <View style={{paddingHorizontal:20,paddingTop:30}}>
-            <TextInput placeholder="Username"
+            <TextInput placeholder="Email"
                        style={{borderRadius:10,padding:20,borderColor:'#E3E3E3',borderWidth:1}}
+                       value={this.state.password}
+                       onChangeText={(password) => this.setState({password})}
             />
           </View>
           <View style={{paddingHorizontal:20,paddingTop:30}}>

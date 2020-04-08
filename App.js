@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React , {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,67 +16,15 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Routes from './src/Routes';
-import Details from './src/screens/home/Details';
-import Home from './src/screens/home/Home';
-import LoginVerify from './src/screens/home/LoginVerify';
-import AccountDetails from './src/screens/home/AccountDetails';
-import ForgotPassword from './src/screens/home/ChangePassword';
-import Dashboard from './src/screens/home/Dashboard';
-import AccountsList from './src/screens/home/AccountsList';
-import TaskDetails from './src/screens/home/TaskDetails';
-const App: () => React$Node = () => {
-  return (
-    <>
-      <Routes />
-    </>
-  );
-};
+import Routes from './src/Routers';
+import Details from './src/screens/task/CreateTask'
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+class App extends Component {
+  render() {
+    return (
 
-export default App;
+        <Routes />
+
+    );
+  }
+}export default App;
