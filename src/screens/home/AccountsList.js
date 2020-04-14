@@ -50,9 +50,8 @@ class AccountsList extends Component {
                 {
                     this.state.accounts.map( (val , idx) => {
                         return(
-                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.acc_id})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, borderRadius: 8, margin: 7, borderColor: '#3e9dff', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: -100 }, shadowOpacity: 0.1, shadowRadius: 10, elevation: 40, backgroundColor: '#fff' }}>
-                              <Image source = {require('../../assets/images/accountsList_icon.png')} style = {{ width: 90, height: 37, resizeMode: 'contain', marginTop: 0}} />
-                              <Text style={{ fontSize: 15, color: '#727272', marginTop: 30 }}>{val.company}</Text>
+                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.acc_id})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, padding: 10, borderRadius: 8, margin: 7, borderColor: '#a4cdf7', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.01, shadowRadius: 10, elevation: 5, backgroundColor: '#f3ffff' }}>
+                              <Text style={{ fontSize: 15, color: '#044282', textAlign: 'center' }}>{val.company}</Text>
                             </TouchableOpacity>
                         )
                     })

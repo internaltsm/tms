@@ -18,12 +18,15 @@ import {
 
 import Routes from './src/Routers';
 import Details from './src/screens/task/CreateTask'
+import AccountsList from './src/screens/home/AccountsList'
+import AccountDetails from './src/screens/home/AccountDetails'
+import TaskDetails from './src/screens/home/TaskDetails'
 
 class App extends Component {
   render() {
     return (
 
-        <Routes />
+        <AccountDetails />
 
     );
   }
