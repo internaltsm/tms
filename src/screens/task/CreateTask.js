@@ -8,7 +8,7 @@ import Styles from '../../assets/Styles'
 import  FontAwesome  from 'react-native-vector-icons/FontAwesome'
 import Spinner from 'react-native-loading-spinner-overlay';
 import DocumentPicker from 'react-native-document-picker';
-
+import RNFS from 'react-native-fs';
 import Config from '../../config';
 import qs from 'qs';
 import axios from 'axios';
@@ -16,11 +16,13 @@ import Helpers from '../../Helpers';
 const devHeight = Dimensions.get('window').height;
 const height = devHeight/2;
 const init = {
+        txtContent : 'Loading...',
         selectedIndex : 0,
         loader : false,
         date : new Date(),
         titleText : '',
-        instruction : ''
+        instruction : '',
+        fileInfo : []
     }
 class CreateTask extends Component {
     constructor(props) {
@@ -44,51 +46,109 @@ class CreateTask extends Component {
                 break;
         }
     }
-    attachedFile = async() => {
 
-            // const res = await DocumentPicker.pick({type: [DocumentPicker.types.images],});
+    attachedFileTo_txt_instrx = async() => {
+        const res = await DocumentPicker.pick({
+            type: [DocumentPicker.types.allFiles],
+        });
 
-            // console.log('res : ' + JSON.stringify(res));
-            // console.log('URI : ' + res.uri);
-            // console.log('Type : ' + res.type);
-            // console.log('File Name : ' + res.name);
-            // console.log('File Size : ' + res.size);
-
-            // axios.post(Helpers.api_url + 'attachedFile/' + 2,qs.stringify(res)).then(response=>{
-            //     console.log(response);
-
-            // })
-            const split = url.split('/');
-            const name = split.pop();
-            const inbox = split.pop();
-            const realPath = `${RNFS.TemporaryDirectoryPath}${inbox}/${name}`;
-
-          console.log(realPath);
-
+        this.setState({
+            fileInfo : res
+        });
     }
-    
-    createtask = () => {
-        this.setState({loader : true});
+
+    createtxt = () => {
+        this.setState({
+            txtContent : 'Creating task...',
+            loader : true
+        });
         const {instruction} = this.state;
         const url = Config.api_url + 'tasks/create_task';
         const formdata = new FormData();
         formdata.append('instruction' , instruction);
         axios.post(url ,formdata).then(res => {
-            if(res.data.status === 'ok'){
-                Alert.alert('Created');
-                this.setState({loader : false});
-                this.reset();
-            }else{
-                Alert.alert('Fail');
-                this.setState({loader : false});
+            console.log(res);
+            if(res.data.status === 'done'){
+                this.createtask_attach(res.data.task_id);
             }
         })
     }
+
+    createtask_attach = (task_id) => {
+        const {fileInfo ,type} = this.state;
+        const data = new FormData();
+        data.append('task_id' ,task_id );
+        data.append('attachement' , {
+            uri: fileInfo.uri,
+            type: fileInfo.type,
+            name : fileInfo.name
+        });
+        axios({
+            method : 'POST',
+            url : Config.api_url + 'tasks/uploadtxt_attach',
+            data : data,
+            responseType : 'json',
+            onUploadProgress : (progs) => {
+                var percentCompleted = Math.round((progs.loaded * 100) / progs.total)
+                this.setState({
+                    txtContent : "Uploading Attachment.. " + percentCompleted+'%'
+                });
+            }
+        }).then( res => {
+            console.log(res);
+            this.setState({
+                loader : false
+            });
+        })
+    }
+
+    attachmentOnly = async() => {
+        const {selectedIndex} = this.state;
+        const file = await DocumentPicker.pick({
+            type: [selectedIndex == 1 ? DocumentPicker.types.audio : DocumentPicker.types.video]
+        });
+        this.setState({
+            fileInfo : file
+        });
+    }
+
+    submitAttachmentOnly = () => {
+        this.setState({
+            loader : true,
+            txtContent : 'Loading...'
+        });
+        const {fileInfo , selectedIndex} = this.state;
+        const data = new FormData();
+        data.append('instrux' , {
+            uri: fileInfo.uri,
+            type: fileInfo.type,
+            name : fileInfo.name
+        });
+        data.append('type' , selectedIndex === 1 ? 'audio' : 'video');
+        axios({
+            method : 'POST',
+            url : Config.api_url + 'tasks/attachmentOnly',
+            data : data,
+            responseType : 'json',
+            onUploadProgress : (progs) => {
+                var percentCompleted = Math.round((progs.loaded * 100) / progs.total)
+                this.setState({
+                    txtContent : "Uploading File.. " + percentCompleted+'%'
+                });
+            }
+        }).then( res => {
+            
+            this.setState({
+                loader : false
+            });
+        })
+    }
+
     render() {
-        const component1 = () => <Text >Text</Text>
-        const component2 = () => <Text >Voice</Text>
-        const component3 = () => <Text >Video</Text>
-        const buttons = [{ element: component1 }, { element: component2 }, { element: component3 }]
+    const txt_attach = () => <Text >Text</Text>
+    const voice = () => <Text >Voice</Text>
+    const video = () => <Text >Video</Text>
+    const buttons = [{ element: txt_attach }, { element: voice }, { element: video }]
         return (
             <View style={{flex:1}}>
                 <Spinner
@@ -96,7 +156,7 @@ class CreateTask extends Component {
                     textStyle={styles.spinnerTextStyle}
                     animation = 'slide'
                     cancelable = {false}
-                    textContent = "Loading..."
+                    textContent = {this.state.txtContent}
                     size = 'large'
                     textStyle = {{color : '#F4F6F9' , fontSize: 14}}
                     />
@@ -141,23 +201,25 @@ class CreateTask extends Component {
                                         </View>
 
                                         <View style = {styles.conts}>
-                                            <TouchableOpacity onPress = {() => this.attachedFile()} style= {styles.attachment}>
+                                            <TouchableOpacity onPress = {() => this.attachedFileTo_txt_instrx()} style= {styles.attachment}>
                                                 <Text style= {styles.fadeColor}>Attachments</Text>
                                             </TouchableOpacity>
                                         </View>
                                         <View style = {styles.conts}>
-                                            <Button title="Additional Instruction"
-                                                type="outline"
-                                                buttonStyle = {styles.btn}
-                                                titleStyle={{ color: '#c7b1b1' , fontSize : 12}}
-                                                onPress = {() => alert('Additional Instrx')}
-                                                />
+                                            {/*
+                                                <Button title="Additional Instruction"
+                                                    type="outline"
+                                                    buttonStyle = {styles.btn}
+                                                    titleStyle={{ color: '#c7b1b1' , fontSize : 12}}
+                                                    onPress = {() => alert('Additional Instrx')}
+                                                    />
+                                            */}
                                         </View>
                                     </View>
                                     :
 
                                     <View style = {styles.conts}>
-                                        <TouchableOpacity onPress = {() => this.attachedFile()}  style= {styles.attachment}>
+                                        <TouchableOpacity onPress = {() => this.attachmentOnly()}  style= {styles.attachment}>
                                             <Text style= {styles.fadeColor}>Upload {this.state.titleText}</Text>
                                         </TouchableOpacity>
                                     </View>
@@ -168,7 +230,7 @@ class CreateTask extends Component {
                                         type="solid"
                                         buttonStyle = {styles.btnSubmit}
                                         titleStyle={{ color: '#ffffff' , fontSize : 12}}
-                                        onPress = {() => this.createtask()}
+                                        onPress = {this.state.selectedIndex !==0 ? () => this.submitAttachmentOnly() : () => this.createtxt()}
                                         />
                                 </View>
                             </View>
