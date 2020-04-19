@@ -67,7 +67,7 @@ class Home extends Component {
               <Text style={{ textAlign: 'center', color: '#848181', fontSize: 15, lineHeight: 45 }}>Forgot password?</Text>
               </TouchableOpacity>
             </View>
-            
+
             <View>
             <TouchableOpacity onPress={()=>Actions.loginverify()}>
                 <Text style={{ textAlign: 'center', color: '#60a1f7', fontSize: 20, lineHeight: 35 }}>Verify Account</Text>

@@ -12,34 +12,32 @@ import axios from "axios";
 import qs from 'qs';
 import Helpers from '../../Helpers'
 import Config from '../../config'
+import Loader from '../../components/Loader';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Actions} from 'react-native-router-flux';
 class Taskhistory extends Component {
     constructor(props){
         super(props);
         this.state= {
-            tasks:[]
+            tasks:[],
+            loader  : false
         }
     }
     componentDidMount = () =>{
         this.getTaskList();
     }
     getTaskList = () => {
-        axios.post(Helpers.api_url+'getAllTaskList/2/1').then(response=>{
-            this.setState({tasks:response.data});
+        this.setState({loader : true});
+        axios.post(Helpers.api_url+'tasks/get_task').then(response=>{
+            this.setState({tasks:response.data , loader : false});
         })
     }
 
-    getTaskInfo = (task_id) => {
-        axios.get(Config.api_url+'tasks/get_task_info/'+task_id).then( res => {
-            console.log(res);
-        });
-
-    }
     displayList = () => {
         const tasks = this.state.tasks;
         return tasks.map((task,index)=>{
            return (
-            <TouchableOpacity key={index} onPress={() => this.getTaskInfo(task.pk_task_list_id)}>
+            <TouchableOpacity key={index} onPress={() => Actions.taskdetails({task_id : task.task_id})}>
             <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
                             borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
                 <View style={{padding:10 }}>
@@ -55,9 +53,9 @@ class Taskhistory extends Component {
                 </View>
                 <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
                     <View>
-                        <Text style={[Styles.fontGilroyBold, { marginBottom: 3, fontSize: 16, textAlign: 'left' }]}>{task.account_name}</Text>
+                        <Text style={[Styles.fontGilroyBold, { marginBottom: 3, fontSize: 16, textAlign: 'left' }]}>{'Web2'}</Text>
                         <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>{task.date_added}</Text>
-                        <Text style={[Styles.fontGilroyLight, { marginBottom: 3,textTransform: 'uppercase', fontSize: 12, textAlign: 'left' }]}>{task.instruction}</Text>
+                        <Text style={[Styles.fontGilroyLight, { marginBottom: 3,textTransform: 'uppercase', fontSize: 12, textAlign: 'left' }]}>{task.instrux.substring(0, 24) + "..."}</Text>
                     </View>
 
                     <View >
@@ -75,24 +73,19 @@ class Taskhistory extends Component {
 
     }
   render() {
-      console.log(this.state.tasks);
-
-    return (
-      <View style={{flex:1}}>
-          <TransparentHeader title="Task History"  />
-        <BackgroundStyleTop   height={devHeight} />
-         <View style={{flex:1,borderWidth:1,margin:30,borderRadius:25,backgroundColor:'#F4F6F9',borderColor:'white'}}>
-            <ScrollView>
-                {this.displayList()}
-
-          </ScrollView>
-
-          </View>
-          <BottomNavi />
-
-      </View>
-
-    );
+        return (
+            <View style={{flex:1}}>
+                <Loader visible= {this.state.loader} />
+                <TransparentHeader title="Task History"  />
+                <BackgroundStyleTop   height={devHeight} />
+                <View style={{flex:1,borderWidth:1,margin:30,borderRadius:25,backgroundColor:'#F4F6F9',borderColor:'white'}}>
+                <ScrollView>
+                    {this.displayList()}
+                </ScrollView>
+                </View>
+                <BottomNavi />
+            </View>
+        );
   }
 }
 

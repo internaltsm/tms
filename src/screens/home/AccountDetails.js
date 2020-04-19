@@ -4,6 +4,7 @@ import Config from '../../config';
 import Helpers from '../../Helpers';
 import axios from 'axios';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { Actions } from 'react-native-router-flux';
 class AccountDetails extends Component {
     constructor(props){
       super(props);
@@ -17,8 +18,9 @@ class AccountDetails extends Component {
     }
     fetchMyAccount(){
         const {account_id} = this.props;
-        const url = Helpers + 'accountsDetails/'+account_id;
+        const url = Helpers.orc_api + 'accountsDetails/'+account_id;
         axios.get(url).then(res => {
+            console.log(res)
             const {info} = res.data;
             this.setState({account : info , loader : false});
         })
@@ -35,11 +37,11 @@ class AccountDetails extends Component {
               size = 'large'
               textStyle = {{color : '#F4F6F9' , fontSize: 14}}
               />
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%' }}>  
           <View style={{ height: 240, alignItems: 'center' }}>
             <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >
               <View style = {{alignItems: 'center', flex: 1 }}>
-                <Text style={{ fontSize: 23, color: '#fff', marginTop: 60 }}>Account Details</Text>
+                <Text style={{ fontSize: 23, color: '#fff', marginTop: 60 }}>{this.props.account_id}</Text>
               </View>
           </ImageBackground>
           </View>
@@ -69,7 +71,7 @@ class AccountDetails extends Component {
                     <Text style={{ fontSize: 20, color: '#373737' }}>Contact Information</Text>
                   </View>
                   <View style={{ marginBottom: 25 }}>
-                    <Text style={{ width: 140, fontSize: 15, color: '#777', marginBottom: 10 }}>Company Name:</Text><Text style={{ fontSize: 15, color: '#2b2121' }}>{this.state.account.account_name}</Text>
+                    <Text style={{ width: 140, fontSize: 15, color: '#777', marginBottom: 10 }}>Company Name:</Text><Text style={{ fontSize: 15, color: '#2b2121' }}>{'Sample'}</Text>
                   </View>
                   <View style={{ flexDirection:'row', marginBottom: 15 }}>
                     <Text style={{ width: 140, fontSize: 15, color: '#777' }}>Contact Person:</Text><Text style={{ fontSize: 15, color: '#2b2121', flex: 1, flexWrap: 'wrap' }}>...................</Text>
@@ -125,10 +127,10 @@ class AccountDetails extends Component {
                 </View>
 
                 <View style={{ flex: 1, flexDirection:'row', alignContent: 'center', justifyContent: 'center' }}>
-                  <TouchableOpacity style={{ width: '48%', height: 55, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5, margin: 5}}>
+                  <TouchableOpacity onPress={() => Actions.history()} style={{ width: '48%', height: 55, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5, margin: 5}}>
                     <Text style={{ color: '#fff', lineHeight: 55, textAlign: 'center', color: '#fff' }}>Task History</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ width: '48%', height: 55, borderColor: '#3081ff', borderWidth: 1, textAlign: 'center', borderRadius: 5, margin: 5}}>
+                  <TouchableOpacity onPress={() => Actions.createtask()}style={{ width: '48%', height: 55, borderColor: '#3081ff', borderWidth: 1, textAlign: 'center', borderRadius: 5, margin: 5}}>
                     <Text style={{ color: '#fff', lineHeight: 55, textAlign: 'center', color: '#727272' }}>Create Tasks</Text>
                   </TouchableOpacity>
                 </View>
