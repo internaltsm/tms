@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import SearchInput, { createFilter } from 'react-native-search-filter';
-
+import { Actions } from 'react-native-router-flux';
 const KEYS_TO_FILTERS = ['user.name', 'subject'];
 
 class Dashboard extends Component {
@@ -24,16 +24,16 @@ class Dashboard extends Component {
               <View style = {{alignItems: 'center', flex: 1 }}>
                 <Text style={{ fontSize: 23, color: '#fff', marginTop: 60 }}>Search Area</Text>
               </View>
-            </ImageBackground> 
+            </ImageBackground>
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: -80 }}>
             <View style={{ width: '90%', justifyContent: 'center', flex: 1, alignItems: 'center', borderTopLeftRadius: 25, borderTopRightRadius: 25, backgroundColor: '#fff', paddingLeft: '8%', paddingRight: '8%', paddingTop: 150, paddingBottom: 50 }}>
-                <TouchableOpacity style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', marginBottom: 100, borderRadius: 8  }}>
+                <TouchableOpacity onPress={() => Actions.accountsList()} style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', marginBottom: 100, borderRadius: 8  }}>
                   <Image source = {require('../../assets/images/dashboardIcon1.png')} style = {{ width: 130, height: 130, resizeMode: 'contain', marginTop: -120}} />
                   <Text style={{ fontSize: 20, color: '#727272', borderBottomColor: '#ff5897', borderBottomWidth: 2, paddingBottom: 25, marginTop: 30 }}>My Account</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 8  }}>
+                <TouchableOpacity onPress = {() => Actions.createtask()} style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 8  }}>
                   <Image source = {require('../../assets/images/dashboardIcon2.png')} style = {{ width: 130, height: 130, resizeMode: 'contain', marginTop: -120 }} />
                   <Text style={{ fontSize: 20, color: '#727272', borderBottomColor: '#1ed57a', borderBottomWidth: 2, paddingBottom: 25, marginTop: 30 }}>Create Tasks</Text>
                 </TouchableOpacity>

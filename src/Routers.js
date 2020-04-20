@@ -55,15 +55,11 @@ const App = (props) => {
                 <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
                 <Scene key="taskdetails" hideNavBar={true} component={TaskDetails} />
-
-
-                  <Scene key="logindetails"  component={Details} />
-
-
-                  <Scene key="forgotpass"  component={ForgotPassword} />
-
-
-                  <Scene key="changepassword" hideNavBar={true} component={ChangePassword}  />
+                <Scene key="history"  component={Taskhistory} back/>
+                <Scene key="createtask"  component={CreateTask}   back/>
+                <Scene key="logindetails"  component={Details} />
+                <Scene key="forgotpass"  component={ForgotPassword} />
+                <Scene key="changepassword" hideNavBar={true} component={ChangePassword}  />
 
                 <Scene key="taskhistory">
                   <Scene key="history"  component={Taskhistory} initial/>

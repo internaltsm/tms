@@ -1,10 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity , StyleSheet } from 'react-native';
-
+import Helpers from '../../Helpers'
+import axios from 'axios';
+import Loader from '../../components/Loader';
 class TaskDetails extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            loader : true,
+            task : [],
+        }
+    }
+    componentDidMount(){
+        this.fetchTask();
+    }
+    fetchTask = () => {
+        const {task_id} = this.props;
+        const url = Helpers.api_url + 'tasks/get_task_info/'+task_id;
+        axios.get(url).then( res => {
+            this.setState({loader : false , task : res});
+        });
+    }
   render() {
+    const {data} = this.state.task;
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
+            <Loader visible = {this.state.loader} />
             <View style={{ height: '100%' }}>
                 <View style={{ height: 240, alignItems: 'center' }}>
                     <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >
@@ -20,22 +41,18 @@ class TaskDetails extends Component {
                         </View>
                         <View style={{ borderBottomColor: '#efefef', borderBottomWidth: 1, paddingBottom: 45, marginBottom: 45 }}>
                             <Text style={{ color: '#9d9d9d', fontSize: 15, marginBottom: 5 }}>Account Name:</Text>
-                            <Text style={{ color: '#373737', fontSize: 18 }}>Sample Account Name Sample Account Name Sample Account Name</Text>
+                            <Text style={{ color: '#373737', fontSize: 18 }}>Sample Account Name</Text>
                         </View>
                         <View>
                             <Text style={{ color: '#9d9d9d', fontSize: 18, marginBottom: 25 }}>Instructions:</Text>
                             <View style={{ flexDirection:'row', marginBottom: 17, marginTop: 17 }}>
                                 <Text style={{ color: '#606060', fontSize: 17 }}>1: </Text>
-                                <Text style={{ color: '#606060', fontSize: 17 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</Text>
-                            </View>
-                            <View style={{ flexDirection:'row', marginBottom: 17, marginTop: 17 }}>
-                                <Text style={{ color: '#606060', fontSize: 17 }}>2: </Text>
-                                <Text style={{ color: '#606060', fontSize: 17 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed veniam</Text>
+                                <Text style={{ color: '#606060', fontSize: 17 }}>{"Sample Task,  please integrate woocommerce "}</Text>
                             </View>
                         </View>
-                        
+
                     </View>
-                    
+
                 </View>
             </View>
         </ScrollView>

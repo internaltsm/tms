@@ -67,7 +67,6 @@ class Home extends Component {
               <Text style={{ textAlign: 'center', color: '#848181', fontSize: 15, lineHeight: 45 }}>Forgot password?</Text>
               </TouchableOpacity>
             </View>
-            
           </View>
         </View>
       </ScrollView>
