@@ -49,7 +49,7 @@ class Home extends Component {
               </View>
             </ImageBackground>
           </View>
-          <View style={{ backgroundColor: '#fff', height: '75%', borderTopLeftRadius: 25, borderTopRightRadius: 25, marginTop: '-5%' }}>
+          <View style={{ backgroundColor: '#fff', height: '75%', borderTopLeftRadius: 25, borderTopRightRadius: 25, marginTop: -20 }}>
             <Text style={{ fontSize: 35, textAlign: 'center', color: '#579fff', marginTop: 70, marginBottom: 40 }}>Sign In</Text>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 15 }}>
               <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
@@ -68,11 +68,6 @@ class Home extends Component {
               </TouchableOpacity>
             </View>
             
-            <View>
-            <TouchableOpacity onPress={()=>Actions.loginverify()}>
-                <Text style={{ textAlign: 'center', color: '#60a1f7', fontSize: 20, lineHeight: 35 }}>Verify Account</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </ScrollView>
