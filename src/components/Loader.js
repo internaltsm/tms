@@ -43,7 +43,7 @@ const Loader = props => {
 }
 
 Loader.defaultProps = {
-    visible : true,
+    visible : false,
     txtContent : 'Loading...'
 }
 

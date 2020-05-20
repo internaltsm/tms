@@ -1,42 +1,39 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image , StyleSheet , Alert} from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+
 import Config from '../../config';
 import Helpers from '../../Helpers';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import Loader from '../../components/Loader';
 class AccountsList extends Component {
     constructor(props){
         super(props);
         this.state = {
             loader : false,
             accounts : [],
+            loader : false,
         }
     }
     componentDidMount(){
         this.fetchAccounts();
     }
-    fetchAccounts() {
-        const url = Helpers.orc_api + 'acc_id_company';
-        axios.get(url).then(res => {
-
-            if(res.data){
-                this.setState({accounts : res.data , loader : false});
+    async fetchAccounts() {
+        this.setState({loader : true});
+        axios.get(Helpers.orc_api('Api/subaccounts/'+ await Helpers.getSingleInfo('acc_id'))).then(res => {
+            const {status , has_subAccount} = res.data; 
+            if(status === 'ok' && has_subAccount === true){
+                this.setState({accounts : res.data.data});
+            }else{
+                Actions.accountdetails();
             }
-        })
+            this.setState({loader : false});
+        });
     }
   render() {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
-            <Spinner
-                visible={this.state.loader}
-                textStyle={styles.spinnerTextStyle}
-                animation = 'slide'
-                cancelable = {false}
-                textContent = "Loading..."
-                size = 'large'
-                textStyle = {{color : '#F4F6F9' , fontSize: 14}}
-                />
+            <Loader visible = {this.state.loader} />
         <View style={{ height: '100%' }}>
           <View style={{ height: 240, alignItems: 'center' }}>
             <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >

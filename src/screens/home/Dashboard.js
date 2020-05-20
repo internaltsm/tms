@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, Image } from 'react-native';
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import { Actions } from 'react-native-router-flux';
+import Helpers from '../../Helpers';
 const KEYS_TO_FILTERS = ['user.name', 'subject'];
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            searchTerm: ''
-        }
+
     }
-    searchUpdated(term) {
-    this.setState({ searchTerm: term })
-    }
+
   render() {
     // const filteredEmails = emails.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
@@ -33,7 +30,7 @@ class Dashboard extends Component {
                   <Text style={{ fontSize: 20, color: '#727272', borderBottomColor: '#ff5897', borderBottomWidth: 2, paddingBottom: 25, marginTop: 30 }}>My Account</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress = {() => Actions.createtask()} style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 8  }}>
+                <TouchableOpacity onPress = {async() => Actions.createtask({company : await Helpers.getSingleInfo('company')})} style={{ borderColor: '#eaebed', borderWidth: 1, width: '85%', height: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 8  }}>
                   <Image source = {require('../../assets/images/dashboardIcon2.png')} style = {{ width: 130, height: 130, resizeMode: 'contain', marginTop: -120 }} />
                   <Text style={{ fontSize: 20, color: '#727272', borderBottomColor: '#1ed57a', borderBottomWidth: 2, paddingBottom: 25, marginTop: 30 }}>Create Tasks</Text>
                 </TouchableOpacity>

@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, YellowBox } from 'react-native';
 
 import { Router, Scene, Overlay, Modal, Lightbox, Tabs, Actions } from 'react-native-router-flux';
-
+import Helpers from './Helpers';
 
 import Home from './screens/home/Home';
 import Details from './screens/home/Details';
-
+import TransConfig from './TransConfig';
 import LoginVerify from './screens/home/LoginVerify';
 import AccountDetails from './screens/home/AccountDetails';
 import ForgotPassword from './screens/home/ForgotPassword'
@@ -42,17 +42,19 @@ const getSceneStyle = function (/* NavigationSceneRendererProps */ props, comput
   }
   return style;
 };
+
+
 const App = (props) => {
 
     return (
-        <Router >
+        <Router  >
 
-            <Scene key="root"  hideNavBar >
-                <Scene key="home" initial={true} hideNavBar={true} component={Home} />
+            <Scene key="root"  hideNavBar transitionConfig = {TransConfig} >
+                <Scene key="home" initial={Helpers.isLoggedIn() ? false : true} hideNavBar={true} component={Home} />
                 {/* <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} /> */}
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
-                <Scene key="dashboard" hideNavBar={true} component={Dashboard} />
+                <Scene key="dashboard" initial={Helpers.isLoggedIn() ? true : false} hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
                 <Scene key="taskdetails" hideNavBar={true} component={TaskDetails} />
                 <Scene key="history"  component={Taskhistory} back/>

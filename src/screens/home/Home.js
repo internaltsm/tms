@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { ScrollView, View, Text, ImageBackground, Dimensions,  TouchableOpacity, Image, TextInput } from 'react-native';
-import Config from '../../config';
+import { ScrollView, View, Text, ImageBackground, Dimensions,  TouchableOpacity, Image, TextInput , ToastAndroid } from 'react-native';
+import Helpers from '../../Helpers';
 import axios from 'axios';
 import qs from 'qs'
 import { Actions } from 'react-native-router-flux';
+import Loader from '../../components/Loader';
+import CryptoJS from "react-native-crypto-js";
+import AsyncStorage from '@react-native-community/async-storage';
+
 const devwidth = Dimensions.get('window').height;
 
 class Home extends Component {
@@ -13,34 +17,35 @@ class Home extends Component {
     this.state = {
       loader : true,
       username: '',
-      password: ''
+      password: '',
+      loader : false
     }
   }
+// Actions.dashboard();
+    checklogin = () => {
+        this.setState({loader : true});
+        const {username , password} = this.state;
+        let formdata = new FormData();
+        formdata.append('username' ,username );
+        formdata.append('password' ,password );
 
-  checklogin = () => {
-    console.log(Actions);
-    const {username , password} = this.state;
-    const url = Config.api_url + 'login/tmsLogin';
-    const data = { username:username, password:password }
-
-    axios({
-      url: url,
-      method: 'POST',
-      data: qs.stringify(data),
-      config: { headers: { 'Content-Type': 'multipart/form-data' } }
-    }).then(result => {
-      if (result.data.status == 'canlogin') {
-        Actions.dashboard();
-      } else {
-        alert('Login Failed');
-      }
-    })
-
-  }
+        axios.post(Helpers.orc_api('Login/requestlogin') , formdata ).then( async(res) => {
+            const {data , status} = res.data;
+            if(status === 'success'){
+                let user_datas = CryptoJS.AES.encrypt(JSON.stringify(data) , Helpers.key).toString();
+                await AsyncStorage.setItem('usersdata',user_datas);
+                Actions.dashboard();
+            }else{
+                ToastAndroid.show("Invalid username or password.", ToastAndroid.LONG);
+            }
+            this.setState({loader : false});
+        });
+    }
 
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Loader visible = {this.state.loader} />
         <View style={{ height: devwidth }}>
           <View style={{ height: '30%', alignItems: 'center' }}>
             <ImageBackground source={require('../../assets/images/login_bg.png')} style={{ width: null, height: null, alignSelf: 'stretch', flex: 1 }} resizeMode={'cover'} >
@@ -55,7 +60,7 @@ class Home extends Component {
               <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
             </View>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 35 }}>
-              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Password" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
+              <TextInput secureTextEntry = {true} style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Password" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>
             </View>
             <View style={{ alignItems: 'center', marginBottom: 20 }}>
               <TouchableOpacity onPress={() => this.checklogin()} style={{ width: 150, height: 45, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5}}>
