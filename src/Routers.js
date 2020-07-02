@@ -50,11 +50,11 @@ const App = (props) => {
         <Router  >
 
             <Scene key="root"  hideNavBar transitionConfig = {TransConfig} >
-                <Scene key="home" initial={Helpers.isLoggedIn() ? false : true} hideNavBar={true} component={Home} />
+                <Scene key="home" initial={true} hideNavBar={true} component={Home} />
                 {/* <Scene key="home" initial={true} hideNavBar={true} component={AccountsList} /> */}
                 <Scene key="loginverify" hideNavBar={true} component={LoginVerify} />
                 <Scene key="accountdetails" hideNavBar={true} component={AccountDetails} />
-                <Scene key="dashboard" initial={Helpers.isLoggedIn() ? true : false} hideNavBar={true} component={Dashboard} />
+                <Scene key="dashboard" initial={false} hideNavBar={true} component={Dashboard} />
                 <Scene key="accountsList" hideNavBar={true} component={AccountsList} />
                 <Scene key="taskdetails" hideNavBar={true} component={TaskDetails} />
                 <Scene key="history"  component={Taskhistory} back/>

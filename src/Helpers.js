@@ -4,12 +4,13 @@ import CryptoJS from "react-native-crypto-js";
 const Helpers = {
     api_url: 'http://zerobacklog.com/tms/',
     orc_api: function(item) {
-        return 'https://webtools.proweaverlinks.com/orchestraapi/index.php/'+item;
+        return 'http://54.169.37.206/orchestraapi/index.php/'+item;
     },
     key : 'proW3aver@2020',
     isLoggedIn : async() => {
         const encrypted = await AsyncStorage.getItem('usersdata');
         return  encrypted ? true : false;
+        console.log(encrypted);
     },
     decrypt : async () => {
         const encrypted = await AsyncStorage.getItem('usersdata');
@@ -22,7 +23,7 @@ const Helpers = {
         let decrypted = CryptoJS.AES.decrypt(encrypted, 'proW3aver@2020')
         let origText = decrypted.toString(CryptoJS.enc.Utf8);
         let json = JSON.parse(origText);
-        return json[0][item];
+        return json[item];
     },
     convertBytes : (bytes) => {
         var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];

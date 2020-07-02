@@ -27,49 +27,56 @@ class Taskhistory extends Component {
         this.getTaskList();
     }
     getTaskList = () => {
+        const {acc_id} = this.props;
         this.setState({loader : true});
-        axios.post(Helpers.api_url+'tasks/get_task').then(response=>{
+        axios.get(Helpers.orc_api('Task/history/'+acc_id)).then(response=>{
             this.setState({tasks:response.data , loader : false});
         })
     }
 
     displayList = () => {
         const tasks = this.state.tasks;
-        return tasks.map((task,index)=>{
-           return (
-            <TouchableOpacity key={index} onPress={() => Actions.taskdetails({task_id : task.task_id})}>
-            <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
-                            borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
-                <View style={{padding:10 }}>
-                    <Avatar
-                         rounded
-                         size="large"
-                         source={{
-                            uri:
-                              'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                          }}
-                    />
+        const regex = ' /(<([^>]+)>)/ig';
+        if (tasks) {
+            return tasks.map((task,index)=>{
+               return (
+                <TouchableOpacity key={index} onPress={() => Actions.taskdetails({task_id : task.task_id})}>
+                <View style={{ flex: 1,margin:10, borderRadius: 15,backgroundColor:'white', borderWidth: 1,
+                                borderColor: '#F4F6F9', shadowColor: 'black',flexDirection: 'row' }}>
+                    <View style={{padding:10 }}>
+                        <Avatar
+                             rounded
+                             size="large"
+                             source={{
+                                uri:
+                                  '',
+                              }}
+                        />
 
-                </View>
-                <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
-                    <View>
-                        <Text style={[Styles.fontGilroyBold, { marginBottom: 3, fontSize: 16, textAlign: 'left' }]}>{'Web2'}</Text>
-                        <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>{task.date_added}</Text>
-                        <Text style={[Styles.fontGilroyLight, { marginBottom: 3,textTransform: 'uppercase', fontSize: 12, textAlign: 'left' }]}>{task.instrux.substring(0, 24) + "..."}</Text>
+                    </View>
+                    <View style={[styles.container, { flex:1,paddingLeft: 5, paddingRight: 5,}]}>
+                        <View>
+                            <Text style={[Styles.fontGilroyBold, { marginBottom: 3, fontSize: 16, textAlign: 'left' }]}>{'Web2'}</Text>
+                            <Text style={[Styles.fontGilroyLight, { marginBottom: 3, fontSize: 12, textAlign: 'left' }]}>{task.date_added}</Text>
+                            <Text style={[Styles.fontGilroyLight, { marginBottom: 3,textTransform: 'uppercase', fontSize: 12, textAlign: 'left' }]}>{task.instructions.replace(/(<([^>]+)>)/ig , '').substring(0, 24) + "..."}</Text>
+                        </View>
+
+                        <View >
+                            <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
+                                fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
+                        </View>
                     </View>
 
-                    <View >
-                        <Text style={[Styles.fontGilroyBold, { marginBottom: 9,paddingRight:5, color: '#3182FF',
-                            fontSize: 16, textAlign: 'right',flex:1 }]}><FontAwesome name="star" size={30} /></Text>
-                    </View>
+
                 </View>
+            </TouchableOpacity>
+               )
 
+            })
+        }else{
+            <View><Text>No Task History</Text></View>
+        }
 
-            </View>
-        </TouchableOpacity>
-           )
-
-        })
 
     }
   render() {

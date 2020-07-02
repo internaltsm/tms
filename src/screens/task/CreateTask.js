@@ -61,6 +61,7 @@ class CreateTask extends Component {
     }
 
     createtxt = async() => {
+
         this.setState({
             txtContent : 'Creating task...',
             loader : true
@@ -70,13 +71,14 @@ class CreateTask extends Component {
         formdata.append('company' , await Helpers.getSingleInfo('company'));
         formdata.append('aid' , await Helpers.getSingleInfo('acc_id'));
         dataset.map( (val , idx) => {
-
                 formdata.append('instruction[]' , val.instruction);
-                formdata.append('attachment[]' , {
-                    uri: val.attachment.uri,
-                    type:val.attachment.type,
-                    name:val.attachment.name
-                });
+                if (val.attachment.uri) {
+                    formdata.append('attachment[]' , {
+                        uri: val.attachment.uri,
+                        type:val.attachment.type,
+                        name:val.attachment.name
+                    });
+                }
         });
 
         axios({
@@ -92,13 +94,14 @@ class CreateTask extends Component {
                 });
             }
         }).then( res=> {
+
             if(res.data.status ==='done'){
                 ToastAndroid.show("Completed.", ToastAndroid.LONG);
             }else{
                 ToastAndroid.show("Failed.", ToastAndroid.LONG);
             }
-
             this.setState({loader :false });
+
         } )
     }
 

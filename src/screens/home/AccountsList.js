@@ -15,13 +15,13 @@ class AccountsList extends Component {
             loader : false,
         }
     }
-    componentDidMount(){
+    async componentDidMount(){
         this.fetchAccounts();
     }
     async fetchAccounts() {
         this.setState({loader : true});
         axios.get(Helpers.orc_api('Api/subaccounts/'+ await Helpers.getSingleInfo('acc_id'))).then(res => {
-            const {status , has_subAccount} = res.data; 
+            const {status , has_subAccount} = res.data;
             if(status === 'ok' && has_subAccount === true){
                 this.setState({accounts : res.data.data});
             }else{
@@ -47,7 +47,7 @@ class AccountsList extends Component {
                 {
                     this.state.accounts.map( (val , idx) => {
                         return(
-                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.acc_id})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, padding: 10, borderRadius: 8, margin: 7, borderColor: '#a4cdf7', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.01, shadowRadius: 10, elevation: 5, backgroundColor: '#f3ffff' }}>
+                            <TouchableOpacity key={idx} onPress={() => Actions.accountdetails({account_id : val.acc_id , company : val.company})} style={{ width: '45%', height: 160, justifyContent: 'center', alignItems: 'center', marginBottom: 30, padding: 10, borderRadius: 8, margin: 7, borderColor: '#a4cdf7', borderWidth: 1, shadowColor: '#3e9dff', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.01, shadowRadius: 10, elevation: 5, backgroundColor: '#f3ffff' }}>
                               <Text style={{ fontSize: 15, color: '#044282', textAlign: 'center' }}>{val.company}</Text>
                             </TouchableOpacity>
                         )

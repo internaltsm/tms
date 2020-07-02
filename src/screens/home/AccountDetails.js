@@ -120,10 +120,10 @@ class AccountDetails extends Component {
                 </View>
 
                 <View style={{ flex: 1, flexDirection:'row', alignContent: 'center', justifyContent: 'center' }}>
-                  <TouchableOpacity onPress={() => Actions.history()} style={{ width: '48%', height: 55, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5, margin: 5}}>
+                  <TouchableOpacity onPress={() => Actions.history({acc_id : this.props.account_id })} style={{ width: '48%', height: 55, backgroundColor: '#3081ff', textAlign: 'center', borderRadius: 5, margin: 5}}>
                     <Text style={{ color: '#fff', lineHeight: 55, textAlign: 'center', color: '#fff' }}>Task History</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => Actions.createtask()}style={{ width: '48%', height: 55, borderColor: '#3081ff', borderWidth: 1, textAlign: 'center', borderRadius: 5, margin: 5}}>
+                  <TouchableOpacity onPress={() => Actions.createtask({acc_id : this.props.account_id , company : this.props.company , sub : true})}style={{ width: '48%', height: 55, borderColor: '#3081ff', borderWidth: 1, textAlign: 'center', borderRadius: 5, margin: 5}}>
                     <Text style={{ color: '#fff', lineHeight: 55, textAlign: 'center', color: '#727272' }}>Create Tasks</Text>
                   </TouchableOpacity>
                 </View>

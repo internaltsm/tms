@@ -16,27 +16,31 @@ class Home extends Component {
     super(props);
     this.state = {
       loader : true,
-      username: '',
+      email: '',
       password: '',
       loader : false
     }
   }
+  componentDidMount(){
+      AsyncStorage.clear();
+  }
 // Actions.dashboard();
     checklogin = () => {
         this.setState({loader : true});
-        const {username , password} = this.state;
+        const {email , password} = this.state;
         let formdata = new FormData();
-        formdata.append('username' ,username );
+        formdata.append('email' ,email );
         formdata.append('password' ,password );
 
         axios.post(Helpers.orc_api('Login/requestlogin') , formdata ).then( async(res) => {
-            const {data , status} = res.data;
+            const {account_data , status} = res.data;
+
             if(status === 'success'){
-                let user_datas = CryptoJS.AES.encrypt(JSON.stringify(data) , Helpers.key).toString();
-                await AsyncStorage.setItem('usersdata',user_datas);
+                let user_data = CryptoJS.AES.encrypt(JSON.stringify(account_data) , Helpers.key).toString();
+                await AsyncStorage.setItem('usersdata',user_data);
                 Actions.dashboard();
             }else{
-                ToastAndroid.show("Invalid username or password.", ToastAndroid.LONG);
+                ToastAndroid.show("Invalid email or password.", ToastAndroid.LONG);
             }
             this.setState({loader : false});
         });
@@ -57,7 +61,7 @@ class Home extends Component {
           <View style={{ backgroundColor: '#fff', height: '75%', borderTopLeftRadius: 25, borderTopRightRadius: 25, marginTop: -20 }}>
             <Text style={{ fontSize: 35, textAlign: 'center', color: '#579fff', marginTop: 70, marginBottom: 40 }}>Sign In</Text>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 15 }}>
-              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.username} onChangeText={(username) => this.setState({ username })}></TextInput>
+              <TextInput style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Username" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.email} onChangeText={(email) => this.setState({ email })}></TextInput>
             </View>
             <View style={{ paddingLeft: '10%', paddingRight: '10%', marginBottom: 35 }}>
               <TextInput secureTextEntry = {true} style={{ height: 50, borderColor: '#e2e2e2', borderWidth: 1, paddingLeft: 15, borderRadius: 7}} underlineColorAndroid = "transparent" placeholder = "Password" placeholderTextColor = "#000" autoCapitalize = "none" value={this.state.password} onChangeText={(password) => this.setState({ password })}></TextInput>

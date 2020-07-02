@@ -3,12 +3,11 @@ import { View, Text, ScrollView, Dimensions, ImageBackground, TouchableOpacity, 
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import { Actions } from 'react-native-router-flux';
 import Helpers from '../../Helpers';
+import AsyncStorage from '@react-native-community/async-storage';
 const KEYS_TO_FILTERS = ['user.name', 'subject'];
-
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-
     }
 
   render() {
